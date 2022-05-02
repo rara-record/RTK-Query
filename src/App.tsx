@@ -11,8 +11,8 @@ import {
 import Card from "components/Card";
 
 const App = () => {
-  const [value, setValue] = useState("");
-  const [query, setQuery] = useState("");
+  const [value, setValue] = useState(""); // input value값
+  const [query, setQuery] = useState(""); // 데이터 요청 시 필요한 query 값 (value 저장)
   const [health, setHealth] = useState("vegan");
   const [show, setShow] = useState(false);
   const [recipe, setRecipe] = useState({});
@@ -26,6 +26,11 @@ const App = () => {
   useEffect(() => {
     getFoodRecipes();
   }, [query, health, getFoodRecipes]);
+
+  const handleSearch = () => {
+    setQuery(value);
+    setValue("");
+  };
 
   return (
     <div
@@ -53,7 +58,7 @@ const App = () => {
           onChange={(e) => setValue(e.target.value)}
         />
         <div className="col-auto">
-          <MDBBtn>Search</MDBBtn>
+          <MDBBtn onClick={handleSearch}>Search</MDBBtn>
         </div>
         <MDBRow className="row-cols-1 row-cols-md-2 g-4">
           {data?.hits?.map((item: any, index) => (
