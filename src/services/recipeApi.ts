@@ -12,13 +12,14 @@ export const recipeApi = createApi({
       query: ({ query, health }) => {
         return {
           url: `search?q=${query}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&health=${health}`,
+          method: "get",
         };
       },
     }),
   }),
 });
 
-export const useGetRecipeMutation = recipeApi;
+export const { useGetRecipesMutation } = recipeApi;
 
 /**
  * mutation:
